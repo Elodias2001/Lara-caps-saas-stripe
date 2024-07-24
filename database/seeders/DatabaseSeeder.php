@@ -18,12 +18,12 @@ class DatabaseSeeder extends Seeder
         ->sequence(
             [
                 'name'=>  "Offre Basique",
-                'price'=> "price_1Pg7ddB9zsxtvrzR5DFr8psE",
-                "stripe_product_id" => 2000,
+                'price'=> 2000,
+                "stripe_product_id" => "price_1Pg7ddB9zsxtvrzR5DFr8psE",
             ],[
                 'name'=>  "Offre Prémium",
-                'price'=> "price_1Pg7h7B9zsxtvrzRUCy3yJdz",
-                "stripe_product_id" => 3000,
+                'price'=> 3000,
+                "stripe_product_id" => "price_1Pg7h7B9zsxtvrzRUCy3yJdz",
             ]
             )
         ->create();

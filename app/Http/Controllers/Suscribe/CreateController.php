@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Suscribe;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CreateController extends Controller
@@ -12,8 +13,10 @@ class CreateController extends Controller
      */
     public function __invoke(Request $request)
     {
+        $products = Product::all();
         return view('subscribe.create',[
             'intent' => auth()->user()->createSetupIntent(),
+            'products' => $products
         ]);
     }
 }
