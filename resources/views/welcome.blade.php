@@ -1,3 +1,7 @@
+{{-- @php
+    use App\Models\Product;
+@endphp
+@dd(Product::all()); --}}
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
