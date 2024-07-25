@@ -16,16 +16,24 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+                @if (! auth()->user()->subscribed())
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('subscribe.create')" :active="request()->routeIs('subscribe.create')">
+                            {{ __('Abonnements') }}
+                        </x-nav-link>
+                    </div>
+                @endif
+
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('subscribe.create')" :active="request()->routeIs('subscribe.create')">
-                        {{ __('Abonnements') }}
+                    <x-nav-link :href="route('basic')" :active="request()->routeIs('basic')">
+                        {{ __('Accès Basique') }}
                     </x-nav-link>
                 </div>
-                {{-- <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('subscribe.store')" :active="request()->routeIs('subscribe.store')">
-                        {{ __('Dashboard') }}
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('premium')" :active="request()->routeIs('premium')">
+                        {{ __('Accès Prémium') }}
                     </x-nav-link>
-                </div> --}}
+                </div>
             </div>
 
             <!-- Settings Dropdown -->

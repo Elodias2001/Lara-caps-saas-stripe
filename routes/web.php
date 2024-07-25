@@ -12,12 +12,18 @@ Route::get('/', function () {
 Route::middleware(['auth', 'verified'])->group(function(){
 
     Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
+
     Route::prefix('subscribe') // Pour le prefix url de mes routes
-    ->as('subscribe.') // Pour le nom de mes routes qui seront désormais précédés de subscribe.
-    ->group(function(){
-        Route::get('create',CreateController::class)->name('create');
-        Route::post('store',StoreController::class)->name('store');
+        ->as('subscribe.') // Pour le nom de mes routes qui seront désormais précédés de subscribe.
+        ->middleware('redirect.subscribe') // Pour appeler le middleware comme ça il faut lui créer un alias dans le app du dossier bootstrap
+        ->group(function(){
+            Route::get('create',CreateController::class)->name('create');
+            Route::post('store',StoreController::class)->name('store');
     });
+
+    Route::get('basic',fn()=> dd('basic access'))->name('basic');
+    Route::get('premium',fn()=> dd('premium access'))->name('premium');
+
 });
 
 
