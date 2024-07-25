@@ -19,6 +19,9 @@ return Application::configure(basePath: dirname(__DIR__))
             'redirect.not.premium' => RedirectIfNotPremium::class,
             'redirect.not.subscribe' => RedirectIfNotSubscribe::class,
         ]);
+        $middleware->validateCsrfTokens(except: [
+            'stripe/*',
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
