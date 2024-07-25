@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Middleware\RedirectIfNotPremium;
+use App\Http\Middleware\RedirectIfNotSubscribe;
 use App\Http\Middleware\RedirectIfSubscribed;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -13,7 +15,9 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-            'redirect.subscribe' => RedirectIfSubscribed::class
+            'redirect.subscribe' => RedirectIfSubscribed::class, // Si la personne a souscrire à un abonnement redirige le sur le dashboard qu'il n'accède pas aux routes ici
+            'redirect.not.premium' => RedirectIfNotPremium::class,
+            'redirect.not.subscribe' => RedirectIfNotSubscribe::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
